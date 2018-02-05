@@ -1,30 +1,27 @@
 const path = require('path');
-const SRC_DIR = path.resolve(__dirname, 'src');
+const SRC_DIR = path.resolve(__dirname, 'app');
 const DIST_DIR = path.resolve(__dirname, 'dist');
 
 module.exports = {
-  entry: "./app/index.jsx",
+  entry: `${SRC_DIR}/index.jsx`,
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: 'bundle.js'
+    path: DIST_DIR,
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        include: [
-          path.resolve(__dirname, "src")
-        ],
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: {
-          presets: ['react', 'env']
+          presets: ['env', 'react']
         },
       },
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx", ".css"]
+    extensions: ['.js', '.jsx', '.css'],
   },
-  devtool: "source-map"
+  devtool: 'source-map',
 };
